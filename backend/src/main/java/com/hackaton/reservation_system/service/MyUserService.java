@@ -3,6 +3,7 @@ package com.hackaton.reservation_system.service;
 import com.hackaton.reservation_system.model.MyUser;
 import com.hackaton.reservation_system.repository.MyUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,6 +27,12 @@ public class MyUserService {
     }
 
     public MyUser registerUser(MyUser user) {
+        String email= user.getEmail();
+        String username=user.getUsername();
+        if (existsByEmail(email) ||
+                existsByUsername(username)) {
+            return null;
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return myUserRepository.save(user);
     }
@@ -40,13 +47,13 @@ public class MyUserService {
 
 
 
-    public boolean existsByEmail(String email) {
+    private boolean existsByEmail(String email) {
         return myUserRepository
                 .findByEmail(email)
                 .isPresent();
     }
 
-    public boolean existsByUsername(String username) {
+    private boolean existsByUsername(String username) {
         return myUserRepository
                 .findByUsername(username)
                 .isPresent();
