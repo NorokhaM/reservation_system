@@ -27,12 +27,6 @@ public class MyUserService {
     }
 
     public MyUser registerUser(MyUser user) {
-        String email= user.getEmail();
-        String username=user.getUsername();
-        if (existsByEmail(email) ||
-                existsByUsername(username)) {
-            return null;
-        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return myUserRepository.save(user);
     }
@@ -47,13 +41,13 @@ public class MyUserService {
 
 
 
-    private boolean existsByEmail(String email) {
+    public boolean existsByEmail(String email) {
         return myUserRepository
                 .findByEmail(email)
                 .isPresent();
     }
 
-    private boolean existsByUsername(String username) {
+    public boolean existsByUsername(String username) {
         return myUserRepository
                 .findByUsername(username)
                 .isPresent();

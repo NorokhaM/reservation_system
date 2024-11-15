@@ -34,4 +34,11 @@ public class PlaygroundService {
                 .findByName(name)
                 .isPresent();
     }
+
+    public Long findIdByName(String name) {
+        return playgroundRepository
+                .findByName(name)
+                .orElse(null)
+                .getId();
+    }
 }

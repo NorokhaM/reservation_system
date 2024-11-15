@@ -18,12 +18,11 @@ public class SecurityController {
 
     @PostMapping("/registration")
     public ResponseEntity<?> registerUser(@RequestBody MyUser myUser) {
-        MyUser registeredUser = myUserService.registerUser(myUser);
-        if (registeredUser == null) {
+        if (myUserService.existsByUsername(myUser.getUsername())
+                || myUserService.existsByEmail(myUser.getEmail())) {
             return ResponseEntity.badRequest().body("User already exists");
-        } else {
-            return ResponseEntity.ok(registeredUser);
         }
+        return ResponseEntity.ok(myUserService.registerUser(myUser));
     }
 
     @PostMapping("/login")
