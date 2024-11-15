@@ -1,0 +1,28 @@
+@use '../../variables';
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: variables.$background-color;
+}
+
+.home-title {
+  font-size: 48px;
+  margin-bottom: 3vh;
+  color: variables.$primary;
+}
+
+.main-button {
+  display: inline-block;
+  background-color: variables.$primary;
+  color: #fff;
+  padding: 15px;
+  border-radius: variables.$border-radius;
+  margin: 10px;
+  text-decoration: none;
+  &:hover {
+    background-color: variables.$button-hover-blue;
+  }
+}

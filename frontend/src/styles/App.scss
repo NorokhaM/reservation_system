@@ -1,0 +1,11 @@
+@use "./variables";
+@use "./libs/normalize";
+
+@use "./elements/all";
+
+button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}

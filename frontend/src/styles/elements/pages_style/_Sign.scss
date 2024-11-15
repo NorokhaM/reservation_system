@@ -1,0 +1,93 @@
+@use '../../_variables.scss';
+
+.sign-container {
+  max-width: 400px;
+  width: 80vw;
+  min-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: variables.$background-color;
+  border-radius: variables.$border-radius;
+}
+
+.sign-title {
+  color: variables.$primary;
+  font-size: 48px;
+  margin-bottom: 10vh;
+}
+
+.sign-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.sign-form-input {
+  width: 100%;
+  padding: variables.$button-padding;
+  border-radius: variables.$border-radius;
+  border: 1px solid variables.$primary;
+  outline: none;
+}
+
+.sign-button {
+  width: 100%;
+  padding: variables.$button-padding;
+  background-color: variables.$primary;
+  color: white;
+  border: none;
+  border-radius: variables.$border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: variables.$button-hover-blue;
+  }
+}
+
+.sign-button.petrzalka {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: variables.$green-accent;
+  color: white;
+  padding: variables.$button-padding;
+  border-radius: variables.$border-radius;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #006a32;
+  }
+}
+
+.sign-form-petrzalka-logo {
+  height: 20px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.sign-form-forgot {
+  text-decoration: none;
+  color: variables.$primary;
+
+  &:hover {
+    color: variables.$button-hover-blue;
+  }
+}
+
+.sign-footer {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+
+  a {
+    color: variables.$primary;
+    text-decoration: none;
+    margin: 0 5px;
+
+    &:hover {
+      color: variables.$button-hover-blue;
+    }
+  }
+}
