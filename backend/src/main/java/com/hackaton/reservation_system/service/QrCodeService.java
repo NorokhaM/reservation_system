@@ -18,28 +18,24 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 
 @Service
 public class QrCodeService {
 
     private final QrCodeRepository qrCodeRepository;
+    private final KeyGeneratorService keyGeneratorService;
 
     @Autowired
-    public QrCodeService(QrCodeRepository qrCodeRepository) {
+    public QrCodeService(QrCodeRepository qrCodeRepository, KeyGeneratorService keyGeneratorService) {
         this.qrCodeRepository = qrCodeRepository;
+        this.keyGeneratorService = keyGeneratorService;
+
     }
 
-    public QrCode saveQrCode(String key) throws WriterException, IOException {
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix matrix=qrCodeWriter.encode(key, BarcodeFormat.QR_CODE, 200, 200);
-        BufferedImage bufferedImage= MatrixToImageWriter.toBufferedImage(matrix);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(bufferedImage, "png", baos);
-        byte[] imageInByte = baos.toByteArray();
-        QrCode qrCode = new QrCode(key, LocalDateTime.now(), imageInByte);
-        qrCodeRepository.save(qrCode);
-        return qrCode;
+    public QrCode saveQrCode(QrCode qrCode) throws WriterException, IOException {
+        return qrCodeRepository.save(qrCode);
     }
 
     public String readQRCode(byte[] qrCodeImage) throws IOException, NotFoundException {
@@ -56,10 +52,36 @@ public class QrCodeService {
         return qrCodeData.equals(data);
     }
 
-    public byte[] getQrCodeImage(Long id) {
+
+    public byte[] updateQrCode(Long id) throws WriterException, IOException, NoSuchAlgorithmException {
+        QrCode qrCode = qrCodeRepository.findById(id).orElseThrow();
+        qrCode.setQrCode(
+                generateQrCode(keyGeneratorService
+                        .generateKey())
+                        .getQrCode()
+        );
+        qrCode.setDate(keyGeneratorService.generateKey());
+        qrCodeRepository.updateQrCode(qrCode.getQrCode(), qrCode.getDate(), id);
+        return qrCode.getQrCode();
+    }
+
+    private byte[] getQrCodeImage(Long id) {
         return qrCodeRepository
                 .findById(id)
-                .get()
+                .orElseThrow()
                 .getQrCode();
     }
+
+    public QrCode generateQrCode(String key) throws WriterException, IOException {
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix matrix=qrCodeWriter.encode(key, BarcodeFormat.QR_CODE, 200, 200);
+        BufferedImage bufferedImage= MatrixToImageWriter.toBufferedImage(matrix);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "png", baos);
+        byte[] imageInByte = baos.toByteArray();
+        return new QrCode(key, LocalDateTime.now(), imageInByte);
+    }
+
+
+
 }

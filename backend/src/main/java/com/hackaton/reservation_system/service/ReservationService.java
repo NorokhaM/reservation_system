@@ -1,6 +1,7 @@
 package com.hackaton.reservation_system.service;
 
 import com.google.zxing.WriterException;
+import com.hackaton.reservation_system.model.QrCode;
 import com.hackaton.reservation_system.model.Reservation;
 import com.hackaton.reservation_system.model.Status;
 import com.hackaton.reservation_system.repository.MyUserRepository;
@@ -44,7 +45,7 @@ public class ReservationService {
                 playgroundRepository.findById(playgroundId).orElseThrow()
         );
         reservation.setQrCode(
-                qrCodeService.saveQrCode(keyGeneratorService.generateKey())
+                qrCodeService.saveQrCode(qrCodeService.generateQrCode(keyGeneratorService.generateKey()))
         );
         return reservationRepository.save(reservation);
     }

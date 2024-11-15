@@ -31,7 +31,7 @@ public class ReservationController {
 
 
     @GetMapping("get/playground/{playgroundId}")
-    public ResponseEntity<List<String>> getReservationsByPlayground(@PathVariable Long playgroundId){
+    public ResponseEntity<List<String>> getReservationsByPlaygroundId(@PathVariable Long playgroundId){
         return ResponseEntity.ok(reservationService.getReservationTimeByPlaygroundId(playgroundId));
     }
 
