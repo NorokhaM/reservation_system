@@ -15,13 +15,14 @@ public class MyUserService {
     private final MyUserRepository myUserRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-
+    private final JwtService jwtService;
 
     @Autowired
-    public MyUserService(MyUserRepository myUserRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager){
+    public MyUserService(MyUserRepository myUserRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, JwtService jwtService){
         this.myUserRepository=myUserRepository;
         this.passwordEncoder=passwordEncoder;
         this.authenticationManager=authenticationManager;
+        this.jwtService=jwtService;
     }
 
     public MyUser registerUser(MyUser user) {
@@ -32,11 +33,11 @@ public class MyUserService {
     public String verifyUser(MyUser user){
         Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
         if (authentication.isAuthenticated()){
-            return "User is ok";
+            return jwtService.generateToken(user.getUsername());
         }
-
         return "User is not ok";
     }
+
 
 
     public boolean existsByEmail(String email) {
