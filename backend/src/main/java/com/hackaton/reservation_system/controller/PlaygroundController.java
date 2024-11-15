@@ -1,7 +1,6 @@
 package com.hackaton.reservation_system.controller;
 
 import com.hackaton.reservation_system.model.Playground;
-import com.hackaton.reservation_system.repository.PlaygroundRepository;
 import com.hackaton.reservation_system.service.PlaygroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -33,4 +33,10 @@ public class Reservation {
     @JoinColumn(name = "playground_id", referencedColumnName = "id")
     @JsonIgnore
     private Playground playground;
+
+
+    @OneToOne
+    @JoinColumn(name = "qr_code_id", referencedColumnName = "id")
+    @JsonIgnore
+    private QrCode qrCode;
 }
