@@ -1,7 +1,10 @@
 package com.hackaton.reservation_system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -24,4 +27,7 @@ public class MyUser {
     @Column
     private String role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Reservation> reservation;
 }
