@@ -3,7 +3,6 @@ package com.hackaton.reservation_system.controller;
 import com.hackaton.reservation_system.model.MyUser;
 import com.hackaton.reservation_system.service.MyUserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +17,10 @@ public class SecurityController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<MyUser> registerUser(@RequestBody MyUser myUser){
-        String email= myUser.getEmail();
-        String username=myUser.getUsername();
-        if (myUserService.existsByEmail(email) ||
-                myUserService.existsByUsername(username)) {
-            ResponseEntity.badRequest().body("User already exists");
+    public ResponseEntity<?> registerUser(@RequestBody MyUser myUser) {
+        if (myUserService.existsByUsername(myUser.getUsername())
+                || myUserService.existsByEmail(myUser.getEmail())) {
+            return ResponseEntity.badRequest().body("User already exists");
         }
         return ResponseEntity.ok(myUserService.registerUser(myUser));
     }

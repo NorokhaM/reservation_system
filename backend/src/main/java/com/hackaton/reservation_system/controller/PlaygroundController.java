@@ -1,0 +1,40 @@
+package com.hackaton.reservation_system.controller;
+
+import com.hackaton.reservation_system.model.Playground;
+import com.hackaton.reservation_system.repository.PlaygroundRepository;
+import com.hackaton.reservation_system.service.PlaygroundService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping ("/playground")
+public class PlaygroundController {
+
+    private final PlaygroundService playgroundService;
+
+    @Autowired
+    public PlaygroundController(PlaygroundService playgroundService){
+        this.playgroundService=playgroundService;
+    }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<Playground> addPlayground(@RequestBody Playground playground){
+        return ResponseEntity.ok(playgroundService.addPlayground(playground));
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Playground> getPlayground(@PathVariable Long id){
+        return ResponseEntity.ok(playgroundService.getPlaygroundById(id));
+    }
+
+    @GetMapping("/get/{name}")
+    public ResponseEntity<Long> getPlaygroundIdByName(@PathVariable String name){
+        return ResponseEntity.ok(playgroundService.findIdByName(name));
+    }
+
+
+
+
+}
