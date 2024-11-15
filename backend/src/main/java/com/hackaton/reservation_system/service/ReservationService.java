@@ -1,5 +1,6 @@
 package com.hackaton.reservation_system.service;
 
+import com.google.zxing.WriterException;
 import com.hackaton.reservation_system.model.Reservation;
 import com.hackaton.reservation_system.model.Status;
 import com.hackaton.reservation_system.repository.MyUserRepository;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,21 +23,28 @@ public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final MyUserRepository myUserRepository;
     private final PlaygroundRepository playgroundRepository;
+    private final QrCodeService qrCodeService;
+    private final KeyGeneratorService keyGeneratorService;
 
     @Autowired
-    public ReservationService(ReservationRepository reservationRepository, MyUserRepository myUserRepository, PlaygroundRepository playgroundRepository){
+    public ReservationService(ReservationRepository reservationRepository, MyUserRepository myUserRepository, PlaygroundRepository playgroundRepository, QrCodeService qrCodeService, KeyGeneratorService keyGeneratorService) {
         this.reservationRepository=reservationRepository;
         this.myUserRepository=myUserRepository;
         this.playgroundRepository=playgroundRepository;
+        this.qrCodeService=qrCodeService;
+        this.keyGeneratorService=keyGeneratorService;
     }
 
 
-    public Reservation addReservation(Reservation reservation, Long userId, Long playgroundId) {
+    public Reservation addReservation(Reservation reservation, Long userId, Long playgroundId) throws NoSuchAlgorithmException, WriterException, IOException {
         reservation.setUser(
                 myUserRepository.findById(userId).orElseThrow()
         );
         reservation.setPlayground(
                 playgroundRepository.findById(playgroundId).orElseThrow()
+        );
+        reservation.setQrCode(
+                qrCodeService.saveQrCode(keyGeneratorService.generateKey())
         );
         return reservationRepository.save(reservation);
     }
