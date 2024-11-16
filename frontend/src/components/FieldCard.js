@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FieldCard = ({ name, price, location }) => {
+const FieldCard = ({ name, price, address }) => {
   // Генерация URL для поля
   const fieldUrl = `/fields/${name.toLowerCase().replace(/\s+/g, '-')}`;
 
@@ -10,7 +10,7 @@ const FieldCard = ({ name, price, location }) => {
       <Link to={fieldUrl}>
         <h3 className='fieldcard-name'>{name}</h3>
         <div className='fieldcard-information'>
-          <span className='fieldcard-location'>{location}</span>
+          <span className='fieldcard-location'>{address}</span>
           <h4 className='fieldcard-price'>{price}</h4>
         </div>
       </Link>

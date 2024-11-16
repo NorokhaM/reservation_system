@@ -1,13 +1,13 @@
 import React from 'react';
 import FieldCard from './FieldCard';
 
-const FieldList = ({ fields, onSelect }) => {
+const FieldList = ({ fields }) => {
 
   return (
     <div className='fieldlist'>
       <h2 className='fieldlist-title'>Our Fields</h2>
       {fields.map(field => {
-        return <FieldCard  {...field} ></FieldCard>
+        return <FieldCard key={field.name} {...field} ></FieldCard>
       })}
     </div>
   )

@@ -20,11 +20,6 @@ public class PlaygroundController {
     }
 
 
-    @PostMapping("/add")
-    public ResponseEntity<Playground> addPlayground(@RequestBody Playground playground){
-        return ResponseEntity.ok(playgroundService.addPlayground(playground));
-    }
-
     @GetMapping("/get/all")
     public ResponseEntity<List<Playground>> getAllPlaygrounds(){
         return ResponseEntity.ok(playgroundService.getAllPlaygrounds());

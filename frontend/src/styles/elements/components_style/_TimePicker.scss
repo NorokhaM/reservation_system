@@ -1,0 +1,47 @@
+.time-selection-container {
+  position: relative;
+}
+
+.time-picker-button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.time-dropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 50vh;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.time-dropdown-up {
+  bottom: 100%;
+}
+
+.time-dropdown-down {
+  top: 100%;
+}
+
+.time-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.time-option:hover {
+  background-color: #f1f1f1;
+}
+
+.time-option.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}

@@ -5,6 +5,10 @@
   cursor: pointer;
   padding: 10px;
 
+  * {
+    text-decoration: none;
+  }
+
   &-name {
     margin-bottom: 10px;
   }

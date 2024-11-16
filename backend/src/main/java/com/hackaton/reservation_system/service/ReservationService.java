@@ -44,9 +44,6 @@ public class ReservationService {
         reservation.setPlayground(
                 playgroundRepository.findById(playgroundId).orElseThrow()
         );
-        reservation.setQrCode(
-                qrCodeService.saveQrCode(qrCodeService.generateQrCode(keyGeneratorService.generateKey()))
-        );
         return reservationRepository.save(reservation);
     }
 

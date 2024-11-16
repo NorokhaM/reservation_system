@@ -18,7 +18,7 @@ const SignIn = () => {
     }
 
     setError(''); // Clear error message if passwords match
-    console.log("User signed up with:", data);
+    console.log("User signed in with:", data);
 
     try {
       const res = await fetch(`http://localhost:8080/login`, {
@@ -36,7 +36,7 @@ const SignIn = () => {
         // Redirect to /sign-in page after successful sign-up
         navigate('/');
       } else {
-        setError('Registration failed. Please try again.');
+        setError('Nesprávne prihlasovacie údaje');
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

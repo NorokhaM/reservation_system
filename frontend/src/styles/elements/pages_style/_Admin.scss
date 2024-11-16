@@ -1,0 +1,133 @@
+/* Общий стиль для всей панели */
+.admin {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* Блок устройств */
+.admin-devices, .admin-fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки блоков */
+.admin-devices h3, .admin-fields h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #2557a7;
+}
+
+/* Списки устройств и полей */
+.admin-devices-list, .admin-fields-list {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .admin-devices-list, .admin-fields-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    gap: 15px;
+  }
+}
+
+.admin-device, .admin-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-device:hover, .admin-field:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Названия карточек */
+.admin-card-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Адреса полей */
+.admin-card-address, .admin-card-field {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Кнопки добавления */
+.admin-add-device, .admin-add-field {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #00a84e;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.admin-add-device:hover, .admin-add-field:hover {
+  background-color: #008c3f;
+}
+
+.admin-add-device:active, .admin-add-field:active {
+  transform: scale(0.98);
+}
+
+/* Кнопки удаления */
+.admin-delete-device, .admin-delete-field {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ff4d4d;
+  color: white;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.admin-delete-device:hover, .admin-delete-field:hover {
+  background-color: #e63939;
+}
+
+.admin-delete-device:active, .admin-delete-field:active {
+  transform: scale(0.98);
+}
+
+/* Список устройств внутри поля */
+.admin-field-devices {
+  margin-top: 10px;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.admin-field-device {
+  margin-bottom: 5px;
+}

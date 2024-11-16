@@ -1,0 +1,77 @@
+@use '../../variables';
+
+.burger-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1500; // Обновленный z-index для бургер-меню, чтобы оно всегда было сверху
+
+  .burger-button {
+    background: transparent;  // Фон кнопки должен быть прозрачным
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 24px;
+    width: 30px;
+    padding: 0;
+    z-index: 1500;  // Бургер всегда выше панели
+
+    .line {
+      width: 100%;
+      height: 3px;
+      background-color: variables.$primary;
+      transition: all 0.3s ease;
+    }
+
+    &.open {
+      .line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .line:nth-child(2) {
+        opacity: 0;
+      }
+      .line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+    }
+  }
+
+  .menu-panel {
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    width: 100vw;
+    height: 100%;
+    background-color: variables.$background-color;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    z-index: 1000; // Убедитесь, что панель не перекрывает бургер
+
+    &.visible {
+      right: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 20px;
+      margin: 0;
+
+      li {
+        margin-bottom: 20px;
+
+        a {
+          text-decoration: none;
+          font-size: 18px;
+          color: variables.$primary;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: variables.$green-accent;
+          }
+        }
+      }
+    }
+  }
+}

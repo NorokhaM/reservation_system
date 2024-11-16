@@ -12,9 +12,8 @@
     left: 0;
     width: 100vw;
     height: 50vh;
-    background: 
-      url('../../../../public/home-background-image.png') no-repeat center center / cover;
-    background-color: url('../../../../public/home-background-image.png') no-repeat center center / cover;
+    background: url('../../../../public/home-background-image.png') no-repeat center center / cover;
+    filter: blur(3px);
     z-index: -1;
   }
 }
