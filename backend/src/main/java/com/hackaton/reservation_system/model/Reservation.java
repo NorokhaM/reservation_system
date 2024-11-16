@@ -33,4 +33,8 @@ public class Reservation {
     @JoinColumn(name = "playground_id", referencedColumnName = "id")
     @JsonIgnore
     private Playground playground;
+
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Payment payment;
 }

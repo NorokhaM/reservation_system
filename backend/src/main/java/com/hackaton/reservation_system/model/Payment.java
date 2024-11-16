@@ -29,4 +29,8 @@ public class Payment {
     @Column
     private String cardHolder;
 
+    @OneToOne
+    @JoinColumn(name = "reservation_id", referencedColumnName = "id")
+    private Reservation reservation;
+
 }
