@@ -70,4 +70,20 @@ public class MyUserService {
                 .map(MyUser::getId)
                 .orElseThrow();
     }
+
+    public MyUser updateUser(MyUser user, Long id) {
+        MyUser foundUser = myUserRepository.findById(id).orElseThrow();
+        if (user.getEmail() != null) {
+            foundUser.setEmail(user.getEmail());
+        }
+        if (user.getUsername() != null) {
+            foundUser.setUsername(user.getUsername());
+        }
+        if (user.getPassword() != null) {
+            foundUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        return myUserRepository
+                .updateMyUserById(foundUser, id)
+                .orElseThrow();
+    }
 }

@@ -4,10 +4,7 @@ import com.hackaton.reservation_system.model.MyUser;
 import com.hackaton.reservation_system.service.MyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -33,5 +30,11 @@ public class MyUserController {
     public ResponseEntity<Long> getUserIdByUsername(Principal principal) {
         return ResponseEntity.ok(myUserService.findIdByUsername(principal.getName()));
     }
+
+    @PutMapping("user-update/{id}")
+    public ResponseEntity<MyUser> updateUser(@RequestBody MyUser myUser, Long id) {
+        return ResponseEntity.ok(myUserService.updateUser(myUser, id));
+    }
+
 
 }
