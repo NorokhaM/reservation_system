@@ -4,3 +4,139 @@
   gap: 10px;
   align-items: center;
 }
+
+.fieldfull-reservations-container {
+  margin-top: 20px;
+
+  .reservations-list {
+    list-style-type: none;
+    padding: 0;
+
+    .reservation-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+
+      p {
+        margin: 5px 0;
+      }
+
+      strong {
+        color: #2557a7; /* Основной цвет из вашего проекта */
+      }
+    }
+  }
+
+  p {
+    color: #777;
+    text-align: center;
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Полная высота экрана */
+  background-color: #f9f9f9;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #2557a7; /* Цвет верхней части спиннера */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.time-selection {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.time-selection h2 {
+  margin-bottom: 10px;
+}
+
+.time-selection label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.time-selection select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.time-selection select:hover {
+  border-color: #2557a7;
+}
+
+.time-selection select:focus {
+  border-color: #2557a7;
+  box-shadow: 0 0 4px #2557a7;
+}
+
+.time-selection-container {
+  position: relative;
+}
+
+.time-dropdown {
+  position: absolute;
+  width: 100%; /* Ширина совпадает с кнопкой */
+  max-height: 50vh; /* Максимальная высота 50% экрана */
+  overflow-y: auto; /* Скроллинг при большом количестве элементов */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.time-dropdown-up {
+  bottom: 100%; /* Открытие вверх */
+  transform-origin: bottom center;
+}
+
+.time-dropdown-down {
+  top: 100%; /* Открытие вниз */
+  transform-origin: top center;
+}
+
+.time-option {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.time-option:hover {
+  background-color: #f1f1f1;
+}
+
+.time-option:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}

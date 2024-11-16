@@ -23,7 +23,7 @@ const SignUp = () => {
       username: name,
       email: email,
       password: password,
-      role: "USER"
+      role: "ADMIN"
     }
 
     setError(''); // Clear error message if passwords match
