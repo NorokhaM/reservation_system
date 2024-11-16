@@ -1,6 +1,7 @@
 package com.hackaton.reservation_system.controller;
 
 
+import com.hackaton.reservation_system.model.Controller;
 import com.hackaton.reservation_system.model.Device;
 import com.hackaton.reservation_system.model.Playground;
 import com.hackaton.reservation_system.service.AdminService;
@@ -30,16 +31,21 @@ public class AdminController {
         return adminService.addToPlayground(controllerId, playgroundId).getName();
     }
 
+    @PostMapping("add-controller")
+    public ResponseEntity<Controller> addController(@RequestBody Controller controller){
+        return ResponseEntity.ok(adminService.addController(controller));
+    }
+
     @PostMapping("/add-playground")
     public ResponseEntity<Playground> addPlayground(@RequestBody Playground playground){
         return ResponseEntity.ok(adminService.addPlayground(playground));
     }
 
     @PostMapping("/add-device/{controlledId}")
-    public ResponseEntity<Device> addDevice(@PathVariable Long controlledId) {
+    public ResponseEntity<Device> addDevice(@RequestBody Device device, @PathVariable Long controlledId) {
         String url = "https://iothub-nrzb.onrender.com/devices/create_device";
         restTemplate.postForObject(url, controlledId, String.class);
-        return ResponseEntity.ok(adminService.addDevice(controlledId));
+        return ResponseEntity.ok(adminService.addDevice(device, controlledId));
     }
 
     @DeleteMapping("/delete-playground/{id}")
