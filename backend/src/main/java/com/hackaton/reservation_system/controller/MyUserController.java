@@ -1,5 +1,6 @@
 package com.hackaton.reservation_system.controller;
 
+import com.hackaton.reservation_system.model.MyUser;
 import com.hackaton.reservation_system.service.MyUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +24,14 @@ public class MyUserController {
     }
 
 
-    @GetMapping("/getName")
-    public ResponseEntity<String> getUserName(Principal principal) {
-        return ResponseEntity.ok(principal.getName());
+    @GetMapping("/get-user-by-name")
+    public ResponseEntity<MyUser> getUserByName(Principal principal) {
+        return ResponseEntity.ok(myUserService.findByUsername(principal.getName()));
     }
 
-    @GetMapping("/get/{username}")
-    public ResponseEntity<Long> getUserIdByUsername(@PathVariable String username){
-        return ResponseEntity.ok(myUserService.findIdByUsername(username));
+    @GetMapping("/get-id")
+    public ResponseEntity<Long> getUserIdByUsername(Principal principal) {
+        return ResponseEntity.ok(myUserService.findIdByUsername(principal.getName()));
     }
+
 }
