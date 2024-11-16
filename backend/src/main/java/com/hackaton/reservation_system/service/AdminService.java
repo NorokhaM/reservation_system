@@ -8,6 +8,8 @@ import com.hackaton.reservation_system.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AdminService {
 
@@ -31,19 +33,19 @@ public class AdminService {
         return playgroundService.addToPlayground(controllerId, playgroundId);
     }
 
-    public Device addDevice(Long controllerId) {
+    public Device addDevice(Device device, Long controllerId) {
         Controller controller = controllerRepository.findById(controllerId)
                 .orElseThrow(() -> new IllegalArgumentException("Controller not found"));
-
-        Device device = new Device();
         device.setController(controller);
-
-
         return deviceRepository.save(device);
     }
 
     public void deletePlayground(Long id){
         playgroundService.deletePlayground(id);
+    }
+
+    public Controller addController(Controller controller){
+        return controllerRepository.save(controller);
     }
 
 
