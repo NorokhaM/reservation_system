@@ -30,12 +30,12 @@ public class PlaygroundController {
         return ResponseEntity.ok(playgroundService.getAllPlaygrounds());
     }
 
-    @GetMapping("/get-id/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Playground> getPlayground(@PathVariable Long id){
         return ResponseEntity.ok(playgroundService.getPlaygroundById(id));
     }
 
-    @GetMapping("/get-name/{name}")
+    @GetMapping("/get-id/{name}")
     public ResponseEntity<Long> getPlaygroundIdByName(@PathVariable String name){
         return ResponseEntity.ok(playgroundService.findIdByName(name));
     }
