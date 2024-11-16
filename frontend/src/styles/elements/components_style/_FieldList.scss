@@ -1,0 +1,10 @@
+@import '../../_variables.scss';
+
+.fieldlist{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  gap: 15px;
+  // background-color: $background-color;
+}

@@ -1,0 +1,25 @@
+@import '../../_variables.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: $primary;
+  color: #fff;
+  // position:fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  width: 100vw;
+}
+
+.nav-button {
+  color: #fff;
+  padding: $button-padding;
+  border-radius: $border-radius;
+  text-decoration: none;
+  &:hover {
+    background-color: $button-hover-blue;
+  }
+}
