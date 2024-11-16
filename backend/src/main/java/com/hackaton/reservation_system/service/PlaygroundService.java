@@ -5,6 +5,8 @@ import com.hackaton.reservation_system.repository.PlaygroundRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlaygroundService {
 
@@ -40,5 +42,9 @@ public class PlaygroundService {
                 .findByName(name)
                 .orElse(null)
                 .getId();
+    }
+
+    public List<Playground> getAllPlaygrounds(){
+        return playgroundRepository.findAll();
     }
 }

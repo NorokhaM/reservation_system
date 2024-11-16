@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping ("/playground")
 public class PlaygroundController {
@@ -21,6 +23,11 @@ public class PlaygroundController {
     @PostMapping("/add")
     public ResponseEntity<Playground> addPlayground(@RequestBody Playground playground){
         return ResponseEntity.ok(playgroundService.addPlayground(playground));
+    }
+
+    @GetMapping("/get/all")
+    public ResponseEntity<List<Playground>> getAllPlaygrounds(){
+        return ResponseEntity.ok(playgroundService.getAllPlaygrounds());
     }
 
     @GetMapping("/get/{id}")

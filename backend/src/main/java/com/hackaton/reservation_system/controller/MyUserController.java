@@ -24,7 +24,7 @@ public class MyUserController {
 
 
     @GetMapping("/getName")
-    public ResponseEntity<String> getUserName(Principal principal){
+    public ResponseEntity<String> getUserName(Principal principal) {
         return ResponseEntity.ok(principal.getName());
     }
 
