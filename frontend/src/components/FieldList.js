@@ -1,15 +1,16 @@
 import React from 'react';
-import styles from '../styles/elements/components_style/_FieldList.module.scss';
+import FieldCard from './FieldCard';
 
-const FieldList = ({ fields, onSelect }) => (
-  <div className={styles.fieldListContainer}>
-    {fields.map((field, index) => (
-      <div key={index} className={styles.fieldItem} onClick={() => onSelect(field)}>
-        <h3>{field.name}</h3>
-        <p>{field.location}</p>
-      </div>
-    ))}
-  </div>
-);
+const FieldList = ({ fields, onSelect }) => {
+
+  return (
+    <div className='fieldlist'>
+      <h2 className='fieldlist-title'>Our Fields</h2>
+      {fields.map(field => {
+        return <FieldCard  {...field} ></FieldCard>
+      })}
+    </div>
+  )
+}
 
 export default FieldList;

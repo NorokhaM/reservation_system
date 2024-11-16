@@ -1,21 +1,10 @@
 @import '../../_variables.scss';
 
-.fieldListContainer {
+.fieldlist{
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;  
+  gap: 15px;
   // background-color: $background-color;
-}
-
-.fieldItem {
-  background-color: #fff;
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid $primary;
-  border-radius: $border-radius;
-  cursor: pointer;
-  &:hover {
-    background-color: $button-hover-blue;
-    color: #fff;
-  }
 }
