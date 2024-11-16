@@ -1,17 +1,13 @@
 package com.hackaton.reservation_system.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
-@Table(name= "playgrounds")
 
-public class Playground {
+public class Device {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -20,13 +16,15 @@ public class Playground {
     private String name;
 
     @Column
-    private String address;
+    private String deviceIp;
 
-    @OneToMany(mappedBy="playground", cascade=CascadeType.ALL)
-    @JsonIgnore
-    private List<Reservation> reservation;
+    @Column
+    private String deviceType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Transient
+    private Long playground;
+
+    @ManyToOne
     @JoinColumn(name = "controller_id", referencedColumnName = "id")
     private Controller controller;
 }

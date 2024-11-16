@@ -29,14 +29,8 @@ public class Reservation {
     @JsonIgnore
     private MyUser user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "playground_id", referencedColumnName = "id")
     @JsonIgnore
     private Playground playground;
-
-
-    @OneToOne
-    @JoinColumn(name = "qr_code_id", referencedColumnName = "id")
-    @JsonIgnore
-    private QrCode qrCode;
 }
