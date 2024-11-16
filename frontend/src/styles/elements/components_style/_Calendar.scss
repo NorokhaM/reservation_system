@@ -1,0 +1,88 @@
+@use '../../variables';
+
+.calendar-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  width: 100%;
+  max-width: 310px;
+  text-transform: uppercase;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  justify-items: center;
+}
+
+.calendar-day.disabled {
+  color: gray;
+  pointer-events: none; // Блокировка клика
+  opacity: 0.6;
+}
+
+.calendar-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: variables.$primary;
+  border-radius: 50%;
+  font-weight: 700;
+
+  aspect-ratio: 1;
+  background: #dde6ff;
+}
+
+.calendar-month {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+
+.calendar-weekday {
+  font-weight: bold;
+  color: #555;
+}
+
+.calendar-day.selected {
+  background-color: variables.$primary;
+  color: white;
+}
+
+.calendar-day.other-month {
+  color: grey;
+  font-weight: 500;
+}
+
+@mixin calendar-arrow {
+  width: 2rem;
+  height: 2rem;
+
+}
+
+.calendar-arrow-left {
+  @include calendar-arrow();
+  transform: rotate(180deg);
+}
+
+.calendar-arrow-right {
+  @include calendar-arrow();
+}
+
+// .calendar-arrow-button {}
